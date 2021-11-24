@@ -1,4 +1,5 @@
 # invoice-generator-api
+
 A invoice api generator Built with FastApi + sqlalchemy + oauth2
 # Configuration for local development
 1. create virtual environment
@@ -26,4 +27,3 @@ the main.py file:
   just after the app instance 
   
  You can test out this at 🔔 https://invoice-genera.herokuapp.com/docs 🔔  
-

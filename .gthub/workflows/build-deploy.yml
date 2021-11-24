@@ -1,0 +1,12 @@
+name: Build an deploy api
+on: [push, pull_request]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+      steps:
+        - name: pulling our repo
+          uses: actions/checkout@v2
+        - name: pulling message
+          run: echo "successfully pulled"
+          

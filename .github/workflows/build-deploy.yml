@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: pulling our repo
         uses: actions/checkout@v2
-      - name: pulling message
+      - name: pulling messages
         run: echo "successfully "
       - name: Install python version 3.9
         uses: actions/setup-python@v2

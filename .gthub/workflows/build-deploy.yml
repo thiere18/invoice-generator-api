@@ -8,5 +8,4 @@ jobs:
         - name: pulling our repo
           uses: actions/checkout@v2
         - name: pulling message
-          run: echo "successfully pulled"
-          
+          run: echo "successfully "

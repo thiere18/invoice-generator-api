@@ -1,5 +1,15 @@
 name: Build an deploy api
-on: [push, pull_request]
+on: 
+  push: 
+    branches: 
+      - master
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - synchronize
+    branches:
+    - master
 
 jobs:
   build:

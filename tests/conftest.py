@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from sqlalchemy.engine import create_engine
 from sqlalchemy.orm.session import sessionmaker
-from app import schemas,models
+from app import models
 from app.config import settings
 from app.database import Base, get_db
 from app.main import app
@@ -80,3 +80,4 @@ def test_products(test_user,session):
     session.commit()
     pro=session.query(models.Product).all()
     return pro
+

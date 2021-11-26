@@ -88,7 +88,7 @@ class Invoice(BaseModel):
 
 class InvoiceCreate(Invoice):
     pass
-
+    
 class InvoiceOut(BaseModel):
     id:int
     reference:str

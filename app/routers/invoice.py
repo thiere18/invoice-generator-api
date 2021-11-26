@@ -15,7 +15,7 @@ router = APIRouter(
 
 @router.get("/", response_model=List[schemas.InvoiceOut])
 def get_invoices(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
-    return invoice.get_invoice(db)
+    return invoice.get_invoices(db)
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.InvoiceOut)
@@ -29,7 +29,7 @@ def get_invoice(id: int, db: Session = Depends(get_db), current_user: int = Depe
 
 
 @router.put("/{id}", response_model=schemas.InvoiceOut)
-def update_invoice(id: int, updated_post: schemas.ProductCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_invoice(id: int, updated_post: schemas.InvoiceCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     return invoice.update_invoice(id,updated_post,db)
 
 

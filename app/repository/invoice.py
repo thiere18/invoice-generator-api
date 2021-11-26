@@ -1,16 +1,13 @@
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
 from typing import List, Optional
-import asyncio
 from sqlalchemy import func
 # from sqlalchemy.sql.functions import func
 from .. import models, schemas, oauth2
 from ..database import get_db
 
 
-
-
-def get_invoices(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def get_invoices(db: Session):
     containers=db.query(models.Invoice).filter(models.Invoice.deleted!=True).all()
     return  containers
 
@@ -40,7 +37,7 @@ async def create_invoice(post: schemas.InvoiceCreate,item:List[schemas.InvoiceIt
 
 
 
-def get_invoice(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def get_invoice(id: int, db: Session , current_user: int = Depends(oauth2.get_current_user)):
   
 
     invoice = db.query(models.Invoice).filter(models.Invoice.id == id,models.Invoice.deleted!=True).first()
@@ -52,7 +49,7 @@ def get_invoice(id: int, db: Session = Depends(get_db), current_user: int = Depe
     return invoice
 
 
-def update_invoice(id: int, updated_post: schemas.ProductCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_invoice(id: int, updated_post: schemas.InvoiceCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     invoice_query = db.query(models.Invoice).filter(models.Invoice.id == id,models.Invoice.deleted!=True)
 

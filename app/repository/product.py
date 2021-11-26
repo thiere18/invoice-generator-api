@@ -10,12 +10,12 @@ from ..database import get_db
 
 
 
-def get_products(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user), limit: int = 10, skip: int = 0, search: Optional[str] = ""):
+def get_products(db: Session ):
     product=db.query(models.Product).filter(models.Product.deleted!=True).all()
     return  product
 
 
-def create_product(post: schemas.ProductCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def create_product(post: schemas.ProductCreate, db: Session , ):
     new_product = models.Product(quantity_left=post.quantity_init,**post.dict())
     db.add(new_product)
     db.commit()
@@ -23,7 +23,7 @@ def create_product(post: schemas.ProductCreate, db: Session = Depends(get_db), c
     return new_product
 
 
-def get_product(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def get_product(id: int, db: Session , ):
     product = db.query(models.Product).filter(models.Product.id == id,models.Product.deleted!=True).first()
     if not product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -31,7 +31,7 @@ def get_product(id: int, db: Session = Depends(get_db), current_user: int = Depe
     return product
 
 
-def delete_product(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def delete_product(id: int, db: Session ):
     product_query = db.query(models.Product).filter(models.Product.id == id,models.Product.deleted!=True)
     product = product_query.first()
     if product == None:
@@ -42,7 +42,7 @@ def delete_product(id: int, db: Session = Depends(get_db), current_user: int = D
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-def update_product(id: int, updated_post: schemas.ProductCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_product(id: int, updated_post: schemas.ProductCreate, db: Session , ):
     product_query = db.query(models.Product).filter(models.Product.id == id,models.Product.deleted!=True)
     product = product_query.first()
     if product == None:

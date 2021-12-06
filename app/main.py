@@ -30,4 +30,5 @@ app.include_router(invoice.router)
 
 @app.get("/")
 def root():
-    return {"message": "Hello World pushing out"}
+    return {"message": "Hello World pushing out",
+            "hi":"Hello"}

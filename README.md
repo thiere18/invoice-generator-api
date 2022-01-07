@@ -10,7 +10,7 @@ python3 -m venv venv
 5. intall dependencies
   pip install -r requirements.txt
 7. run migration
-  alembic upgrade head
+  alembic upgrade head/
 9. start the server with uvicorn
   uvicorn app.main:app --reload
  - the server should be runing on 🍎 http://127.0.0.1:8000 

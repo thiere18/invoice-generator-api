@@ -13,7 +13,7 @@ python3 -m venv venv
   alembic upgrade head/
 9. start the server with uvicorn
   uvicorn app.main:app --reload
- - the server should be runing on 🍎 http://127.0.0.1:8000 
+ - the server should be runing on http://127.0.0.1:8000 
 # conf for docker environment
 1.modify variables on docker-compose.yml then run  
   docker-compose up
